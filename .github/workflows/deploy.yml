@@ -1,9 +1,9 @@
-name: Deploy to GoDaddy via FTP
+name: Deploy to GoDaddy via SFTP
 
 on:
   push:
     branches:
-      - main   # Trigger deployment only on main branch
+      - main
 
 jobs:
   ftp-deploy:
@@ -13,13 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy to GoDaddy via FTP
+      - name: Deploy to GoDaddy via SFTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
           server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          local-dir: ./           # Root of your repo
-          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
-          git-ftp-args: --insecure
+          username: ${{ secrets.FTP_USERNAME }}       # test@jobreset.com
+          password: ${{ secrets.FTP_PASSWORD }}       # decoded password
+          port: 22                                    # SFTP port
+          protocol: sftp                              # important!
+          local-dir: ./                               # root of repo
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}  # /public_html/hiringworldwide.com/
