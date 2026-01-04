@@ -21,5 +21,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./           # Root of your repo
-          server-dir: ${{ secrets.FTP_REMOTE_DIR }}/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
           git-ftp-args: --insecure
