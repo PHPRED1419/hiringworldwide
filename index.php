@@ -326,7 +326,7 @@
         <div class="header">
             <div class="logo">
                 <i class="fas fa-cube logo-icon"></i>
-                <span>hiringworldwide.com <?php echo date("Y");?></span>
+                <span>hiringworldwide.com</span>
             </div>
             <p class="tagline">Building the future of digital experiences</p>
         </div>
