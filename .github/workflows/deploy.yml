@@ -6,20 +6,20 @@ on:
       - main
 
 jobs:
-  ftp-deploy:
+  sftp-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy to GoDaddy via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+      - name: Deploy via SFTP
+        uses: appleboy/scp-action@master
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}       # test@jobreset.com
-          password: ${{ secrets.FTP_PASSWORD }}       # decoded password
-          port: 22                                    # SFTP port
-          protocol: sftp                              # important!
-          local-dir: ./                               # root of repo
-          server-dir: ${{ secrets.FTP_REMOTE_DIR }}  # /public_html/hiringworldwide.com/
+          host: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 22
+          source: "./"                             # your repo root
+          target: ${{ secrets.FTP_REMOTE_DIR }}   # /public_html/hiringworldwide.com/
+          strip_components: 1                      # optional, adjust if needed
